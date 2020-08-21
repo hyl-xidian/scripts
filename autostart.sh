@@ -13,4 +13,4 @@ xfce4-power-manager &
 ss-qt5 &
 #xfce4-volumed-pulse &
 #/bin/bash ~/scripts/run-mailsync.sh &
-#/bin/bash ~/scripts/autostart_wait.sh &
+/bin/bash ~/scripts/autostart_wait.sh &
