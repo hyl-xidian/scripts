@@ -7,13 +7,17 @@
 dwm_resources () {
     # Used and total memory
     MEMUSED=$(free -h | awk '(NR == 2) {print $3}')
-    MEMTOT=$(free -h |awk '(NR == 2) {print $2}')
+    STOUSED=$(df -h | grep '/$' | awk '{print $3}')
+    STOTOT=$(df -h | grep '/$' | awk '{print $2}')
+    STOPER=$(df -h | grep '/$' | awk '{print $5}')
+
+
 
     printf "%s" "$SEP1"
     if [ "$IDENTIFIER" = "unicode" ]; then
-        printf "💻 MEM %s/%s|" "$MEMUSED" "$MEMTOT"
+        printf "MEM %s STO %s/%s: %s" "$MEMUSED" "$STOUSED" "$STOTOT" "$STOPER"
     else
-        printf "STA | MEM %s/%s" "$MEMUSED" "$MEMTOT"
+        printf "STA|MEM %s|STO %s/%s: %s" "$MEMUSED" "$STOUSED" "$STOTOT" "$STOPER"
     fi
     printf "%s\n" "$SEP2"
 }

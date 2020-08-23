@@ -1,21 +1,9 @@
 #!/bin/bash
 
-print_volume() {
-	volume="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
-	if test "$volume" -gt 0
-	then
-		echo -e "\uE05D${volume}"
-	else
-		echo -e "Mute"
-	fi
-}
-
 print_mem(){
 	memfree=$(($(grep -m1 'MemAvailable:' /proc/meminfo | awk '{print $2}') / 1024))
 	echo -e "$memfree"
 }
-
-#!/bin/bash
 
 get_time_until_charged() {
 
@@ -55,8 +43,8 @@ get_battery_charging_status() {
 	fi
 }
 
-
 print_bat(){
+	#echo "$(get_battery_charging_status)$(get_battery_combined_percent)%";
 	echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
 }
 
@@ -70,7 +58,6 @@ show_record(){
 	size=$(du -h $rp | awk '{print $1}')
 	echo " $size $(basename $rp)"
 }
-
 
 LOC=$(readlink -f "$0")
 DIR=$(dirname "$LOC")
@@ -91,10 +78,6 @@ export IDENTIFIER="unicode"
 #. "$DIR/dwmbar-functions/dwm_ccurse.sh"
 #. "$DIR/dwmbar-functions/dwm_date.sh"
 
-
-xsetroot -name "$(dwm_resources) $(dwm_alsa) |$(print_bat)|$(show_record) $(print_date)"
-
-#xsetroot -name "💿 $(print_mem)M $(dwm_alsa) [$(print_bat)]$(show_record) $(print_date)"
-
+xsetroot -name "$(dwm_resources)|$(dwm_alsa)|$(print_bat)|$(show_record) $(print_date)"
 
 exit 0
