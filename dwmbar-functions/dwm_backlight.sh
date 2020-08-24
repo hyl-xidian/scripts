@@ -7,7 +7,10 @@
 # Dependencies: xbacklight
 
 dwm_backlight () {
-    printf "%s☀ %.0f%s\n" "$SEP1" "$(xbacklight)" "$SEP2"
+    brightness=$(xbacklight -get)
+    printf "%s" "$SEP1"
+    printf "☀ %.0f%s" "$brightness" "%"
+    printf "%s" "$SEP2"
 }
 
 dwm_backlight
