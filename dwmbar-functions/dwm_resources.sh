@@ -30,4 +30,5 @@ dwm_resources () {
 
 }
 
+
 dwm_resources

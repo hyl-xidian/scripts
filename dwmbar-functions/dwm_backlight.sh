@@ -4,12 +4,16 @@
 # Joe Standring <git@joestandring.com>
 # GNU GPLv3
 
-# Dependencies: xbacklight
-
+# Dependencies: xbacklight acpilight 
+#
 dwm_backlight () {
     brightness=$(xbacklight -get)
     printf "%s" "$SEP1"
-    printf "☀ %.0f%s" "$brightness" "%"
+    if [ "$IDENTIFIER" = "unicode" ]; then
+        printf "☀ %.0f%s" "$brightness" "%"
+    else
+        printf "%.0f" "$brightness"
+    fi 
     printf "%s" "$SEP2"
 }
 
