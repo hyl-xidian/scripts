@@ -44,47 +44,47 @@ get_battery_charging_status() {
 }
 
 print_bat(){
-	total_charge=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc));
+	#total_charge=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc));
 
-	# get amount of batteries in the device
-	battery_number=$(acpi -b | wc -l);
+	## get amount of batteries in the device
+	#battery_number=$(acpi -b | wc -l);
 
-	percent=$(expr $total_charge / $battery_number);
-	if $(acpi -b | grep --quiet Discharging)
-	then
-		#echo "🔋";
-        if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
-            printf "\uf244 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
-            printf "\uf243 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
-            printf "\uf242 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
-            printf "\uf241 %.f%s" "$percent" "%"
-        else
-            printf "\uf240 %.f%s" "$percent" "%"
-        fi
-	else 
-		#echo "🔌";
-        if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
-            printf "Ψ\uf244 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
-            printf "Ψ\uf243 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
-            printf "Ψ\uf242 %.f%s" "$percent" "%"
-        elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
-            printf "Ψ\uf241 %.f%s" "$percent" "%"
-        else
-            if [ "$percent" -eq 100 ]; then
-                printf "Ψ\uf240 99%s" "%"
-            else
-                printf "Ψ\uf240 %.f%s" "$percent" "%"
-            fi
-        fi
-	fi
+	#percent=$(expr $total_charge / $battery_number);
+	#if $(acpi -b | grep --quiet Discharging)
+	#then
+	#	#echo "🔋";
+    #    if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
+    #        printf "\uf244 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
+    #        printf "\uf243 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
+    #        printf "\uf242 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
+    #        printf "\uf241 %.f%s" "$percent" "%"
+    #    else
+    #        printf "\uf240 %.f%s" "$percent" "%"
+    #    fi
+	#else 
+	#	#echo "🔌";
+    #    if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
+    #        printf "Ψ\uf244 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
+    #        printf "Ψ\uf243 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
+    #        printf "Ψ\uf242 %.f%s" "$percent" "%"
+    #    elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
+    #        printf "Ψ\uf241 %.f%s" "$percent" "%"
+    #    else
+    #        if [ "$percent" -eq 100 ]; then
+    #            printf "Ψ\uf240 99%s" "%"
+    #        else
+    #            printf "Ψ\uf240 %.f%s" "$percent" "%"
+    #        fi
+    #    fi
+	#fi
 	
 
-    #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%";
+    echo "$(get_battery_charging_status)$(get_battery_combined_percent)%";
 	#echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
 }
 

@@ -8,13 +8,12 @@
 #
 dwm_backlight () {
     brightness=$(xbacklight -get)
-    printf "%s" "$SEP1"
     if [ "$IDENTIFIER" = "unicode" ]; then
-        printf "☀ %.0f%s" "$brightness" "%"
+        #printf "☀ %.0f%s" "$brightness" "%"
+        echo "☀ $brightness%"
     else
         printf "%.0f" "$brightness"
     fi 
-    printf "%s" "$SEP2"
 }
 
 dwm_backlight
