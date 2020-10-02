@@ -123,6 +123,6 @@ export IDENTIFIER="unicode"
 #. "$DIR/dwmbar-functions/dwm_ccurse.sh"
 #. "$DIR/dwmbar-functions/dwm_date.sh"
 
-xsetroot -name "$(dwm_mem-status)|$(dwm_backlight)|$(dwm_alsa)|$(print_bat)| $(print_date)"
+xsetroot -name "$(dwm_mem-status)$(dwm_backlight) $(dwm_alsa) $(print_bat)  $(print_date)"
 
 exit 0
