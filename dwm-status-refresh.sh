@@ -89,7 +89,7 @@ print_bat(){
 }
 
 print_date(){
-	date '+%b_%d %H:%M'
+	date '+%b.%d %H:%M'
 	#date '+%Y年%m月%d日 %H:%M'
 }
 
