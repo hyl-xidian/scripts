@@ -29,8 +29,11 @@ get_battery_combined_percent() {
 	battery_number=$(acpi -b | wc -l);
 
 	percent=$(expr $total_charge / $battery_number);
-
-	echo $percent;
+    if [ $percent -eq 100 ]; then
+        echo "99";
+    else
+	    echo $percent;
+    fi
 }
 
 get_battery_charging_status() {
