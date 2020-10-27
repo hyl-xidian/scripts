@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 dwm_mem-status () {
     MEMUSED=$(free -m | awk '(NR == 2) {print $3}' | cut -d " " -f 1)
