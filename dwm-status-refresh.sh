@@ -1,10 +1,4 @@
 #!/bin/bash
-
-print_mem(){
-	memfree=$(($(grep -m1 'MemAvailable:' /proc/meminfo | awk '{print $2}') / 1024))
-	echo -e "$memfree"
-}
-
 get_time_until_charged() {
 
 	# parses acpitool's battery info for the remaining charge of all batteries and sums them up
@@ -41,67 +35,68 @@ get_battery_charging_status() {
 	then
 		echo "🔋";
 	else 
-		#echo "🔌";
-        echo "Ψ";
+        echo "";
 	fi
 }
 
 print_bat(){
-	#total_charge=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc));
+	total_charge=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc));
 
-	## get amount of batteries in the device
-	#battery_number=$(acpi -b | wc -l);
+	# get amount of batteries in the device
+	battery_number=$(acpi -b | wc -l);
 
-	#percent=$(expr $total_charge / $battery_number);
-	#if $(acpi -b | grep --quiet Discharging)
-	#then
-	#	#echo "🔋";
-    #    if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
-    #        printf "\uf244 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
-    #        printf "\uf243 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
-    #        printf "\uf242 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
-    #        printf "\uf241 %.f%s" "$percent" "%"
-    #    else
-    #        printf "\uf240 %.f%s" "$percent" "%"
-    #    fi
-	#else 
-	#	#echo "🔌";
-    #    if [ "$percent" -gt 0 ] && [ "$percent" -le 25 ]; then
-    #        printf "Ψ\uf244 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 25 ] && [ "$percent" -le 50 ]; then
-    #        printf "Ψ\uf243 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 50 ] && [ "$percent" -le 75 ]; then
-    #        printf "Ψ\uf242 %.f%s" "$percent" "%"
-    #    elif [ "$percent" -gt 75 ] && [ "$percent" -le 95 ]; then
-    #        printf "Ψ\uf241 %.f%s" "$percent" "%"
-    #    else
-    #        if [ "$percent" -eq 100 ]; then
-    #            printf "Ψ\uf240 99%s" "%"
-    #        else
-    #            printf "Ψ\uf240 %.f%s" "$percent" "%"
-    #        fi
-    #    fi
-	#fi
-	
+	percent=$(expr $total_charge / $battery_number);
+	if $(acpi -b | grep --quiet Discharging); then
+        if [ "$percent" -gt 0 ] && [ "$percent" -le 10 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 10 ] && [ "$percent" -le 20 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 20 ] && [ "$percent" -le 30 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 40 ] && [ "$percent" -le 50 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 50 ] && [ "$percent" -le 60 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 60 ] && [ "$percent" -le 70 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 70 ] && [ "$percent" -le 80 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
+            printf "%.f%s" "$percent" "%"
+        else
+            printf "%.f%s" "$percent" "%"
+        fi
+	else 
+        if [ "$percent" -gt 0 ] && [ "$percent" -le 15 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 15 ] && [ "$percent" -le 30 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 40 ] && [ "$percent" -le 60 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 60 ] && [ "$percent" -le 80 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
+            printf "%.f%s" "$percent" "%"
+        else
+            printf "%.f%s" "$percent" "%"
+        fi
+    fi
 
-    echo "$(get_battery_charging_status)$(get_battery_combined_percent)%";
-	#echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
+    #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%";
+    #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
 }
 
 print_date(){
 	date '+%b.%d %H:%M'
-	#date '+%Y年%m月%d日 %H:%M'
 }
-
-#show_record(){
-#	test -f /tmp/r2d2 || return
-#	rp=$(cat /tmp/r2d2 | awk '{print $2}')
-#	size=$(du -h $rp | awk '{print $1}')
-#	echo " $size $(basename $rp)"
-#}
 
 LOC=$(readlink -f "$0")
 DIR=$(dirname "$LOC")

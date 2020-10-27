@@ -4,8 +4,8 @@
 #/bin/bash ~/scripts/wp-autochange.sh &
 #/bin/bash ~/scripts/wp-change.sh &
 /bin/bash ~/scripts/caps-swapescape.sh &
-feh --recursive --bg-fill ~/Pictures/Wallpapers/archlinux.png
-picom -b --config /home/lhy/.config/picom/picom.conf
+feh --recursive --bg-fill ~/Pictures/Wallpapers/archlinux1.png
+picom -b -C -G --config /home/lhy/.config/picom/picom.conf
 #/bin/bash ~/scripts/setxmodmap-colemak.sh &
 nm-applet &
 xfce4-power-manager &
