@@ -144,7 +144,7 @@ export IDENTIFIER="unicode"
 . "$DIR/dwmbar-functions/dwm_alsa.sh"
 . "$DIR/dwmbar-functions/cpu-thermal.sh"
 . "$DIR/dwmbar-functions/dwm_mem-status.sh"
-#. "$DIR/dwmbar-functions/dwm_cpu-load.sh"
+. "$DIR/dwmbar-functions/dwm_cpu-load.sh"
 
 #. "$DIR/dwmbar-functions/dwm_pulse.sh"
 #. "$DIR/dwmbar-functions/dwm_weather.sh"
@@ -161,7 +161,7 @@ get_bytes
 vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
 vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
 
-xsetroot -name "$(dwm_mem-status) $vel_recv $vel_trans $(dwm_backlight) $(dwm_alsa) $(cpu-thermal) $(print_bat) $(print_date)"
+xsetroot -name "$(dwm_mem-status) $vel_recv $vel_trans $(dwm_backlight) $(dwm_alsa) $(dwm_cpu-load) $(cpu-thermal) $(print_bat) $(print_date)"
 
 old_received_bytes=$received_bytes
 old_transmitted_bytes=$transmitted_bytes
