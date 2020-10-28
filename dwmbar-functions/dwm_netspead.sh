@@ -1,4 +1,5 @@
 # !/bin/bash
+
 function get_bytes {
 	# Find active network interface
 	interface=$(ip route get 8.8.8.8 2>/dev/null| awk '{print $5}')
@@ -8,7 +9,7 @@ function get_bytes {
 }
 
 # Function which calculates the speed using actual and old byte number.
-# Speed is shown in KByte per second when greater or equal than 1 KByte per second.
+# Speed is shown in kbyte per second when greater or equal than 1 kbyte per second.
 # This function should be called each second.
 
 function get_velocity {
@@ -17,11 +18,26 @@ function get_velocity {
 	now=$3
 
 	timediff=$(($now - $old_time))
-	velKB=$(echo "1000000000*($value-$old_value)/1000/$timediff" | bc)
-	if test "$velKB" -gt 1000
+	velkb=$(echo "1000000000*($value-$old_value)/1000/$timediff" | bc)
+	if test "$velkb" -gt 1000
 	then
-		echo $(echo "scale=2; $velKB/1000" | bc)Mb
+		echo $(echo "scale=2; $velkb/1000" | bc)Mb
 	else
-		echo ${velKB}Kb
+		echo ${velkb}kb
 	fi
+}
+
+dwm_netspead(){
+    #Get initial values
+    get_bytes
+    old_received_bytes=$received_bytes
+    old_transmitted_bytes=$transmitted_bytes
+    old_time=$now
+    sleep 0.5
+    # Get update values
+    get_bytes
+    # Calculates speeds
+    vel_recv=$(get_velocity $received_bytes $old_received_bytes $now)
+    vel_trans=$(get_velocity $transmitted_bytes $old_transmitted_bytes $now)
+    echo "$vel_recv $vel_trans"
 }
