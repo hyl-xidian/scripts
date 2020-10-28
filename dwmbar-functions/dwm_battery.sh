@@ -1,26 +1,72 @@
-#!/bin/sh
+#!/bin/bash
 
-# A dwm_bar function to read the battery level and status
-# Joe Standring <git@joestandring.com>
-# GNU GPLv3
+get_time_until_charged() {
 
-dwm_battery () {
-    # Change BAT1 to whatever your battery is identified as. Typically BAT0 or BAT1
-    CHARGE=$(cat /sys/class/power_supply/BAT1/capacity)
-    STATUS=$(cat /sys/class/power_supply/BAT1/status)
+	# parses acpitool's battery info for the remaining charge of all batteries and sums them up
+	sum_remaining_charge=$(acpitool -B | grep -E 'Remaining capacity' | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc);
 
-    printf "%s" "$SEP1"
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        if [ "$STATUS" = "Charging" ]; then
-            printf "🔌 %s%% %s" "$CHARGE" "$STATUS"
-        else
-            printf "🔋 %s%% %s" "$CHARGE" "$STATUS"
-        fi
-    else
-        printf "BAT %s%% %s" "$CHARGE" "$STATUS"
-    fi
-    printf "%s\n" "$SEP2"
+	# finds the rate at which the batteries being drained at
+	present_rate=$(acpitool -B | grep -E 'Present rate' | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc);
+
+	seconds=$(bc <<< "scale = 10; ($sum_remaining_charge / $present_rate) * 3600");
+
+	# prettifies the seconds into h:mm format
+	pretty_time=$(date -u -d @${seconds} +%R);
+
+	echo $pretty_time;
 }
 
-dwm_battery
+print_bat(){
+	total_charge=$(expr $(acpi -b | awk '{print $4}' | grep -Eo "[0-9]+" | paste -sd+ | bc));
+	# get amount of batteries in the device
+	battery_number=$(acpi -b | wc -l);
+	percent=$(expr $total_charge / $battery_number);
+
+	if $(acpi -b | grep --quiet Discharging); then
+        if [ "$percent" -gt 0 ] && [ "$percent" -le 10 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 10 ] && [ "$percent" -le 20 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 20 ] && [ "$percent" -le 30 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 40 ] && [ "$percent" -le 50 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 50 ] && [ "$percent" -le 60 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 60 ] && [ "$percent" -le 70 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 70 ] && [ "$percent" -le 80 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        else
+            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+        fi
+	else
+        if [ "$percent" -gt 0 ] && [ "$percent" -le 15 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 15 ] && [ "$percent" -le 30 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 40 ] && [ "$percent" -le 60 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 60 ] && [ "$percent" -le 80 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
+            printf "%.f%s" "$percent" "%"
+        elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
+            printf "%.f%s" "$percent" "%"
+        else
+            printf "%.f%s" "$percent" "%"
+        fi
+    fi
+    echo "$get_time_until_charged";
+    #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
+}
+
 

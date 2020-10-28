@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # A dwm_bar function that shows the current date and time
 # Joe Standring <git@joestandring.com>
@@ -8,11 +8,10 @@
 dwm_date () {
     printf "%s" "$SEP1"
     if [ "$IDENTIFIER" = "unicode" ]; then
-        printf "📆 %s" "$(date "+%a %d-%m-%y %T")"
+        printf " %s" "$(date "+%b.%d %H:%M")"
     else
-        printf "DAT %s" "$(date "+%a %d-%m-%y %T")"
+        printf "DAT %s" "$(date "+%b.%d %H:%M")"
     fi
     printf "%s\n" "$SEP2"
 }
 
-dwm_date
