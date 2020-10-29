@@ -24,45 +24,45 @@ print_bat(){
 
 	if $(acpi -b | grep --quiet Discharging); then
         if [ "$percent" -gt 0 ] && [ "$percent" -le 10 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 10 ] && [ "$percent" -le 20 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 20 ] && [ "$percent" -le 30 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 40 ] && [ "$percent" -le 50 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 50 ] && [ "$percent" -le 60 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 60 ] && [ "$percent" -le 70 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 70 ] && [ "$percent" -le 80 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         else
-            printf "%.f%s|%s$" "$percent" "%" "$(get_time_until_charged)"
+            printf "%d%s|%s$" "$percent" "%" "$(get_time_until_charged)"
         fi
 	else
         if [ "$percent" -gt 0 ] && [ "$percent" -le 15 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 15 ] && [ "$percent" -le 30 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 30 ] && [ "$percent" -le 40 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 40 ] && [ "$percent" -le 60 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 60 ] && [ "$percent" -le 80 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 80 ] && [ "$percent" -le 90 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         elif [ "$percent" -gt 90 ] && [ "$percent" -le 98 ]; then
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "$percent" "%"
         else
-            printf "%.f%s" "$percent" "%"
+            printf "%d%s" "99" "%"
         fi
     fi
     echo "$get_time_until_charged";
