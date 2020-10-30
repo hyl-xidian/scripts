@@ -1,6 +1,6 @@
 #!/bin/bash
 
-/bin/bash ~/scripts/dwm-status.sh &
+#/bin/bash ~/scripts/dwm-status.sh &
 #/bin/bash ~/scripts/wp-autochange.sh &
 #/bin/bash ~/scripts/wp-change.sh &
 /bin/bash ~/scripts/caps-swapescape.sh &

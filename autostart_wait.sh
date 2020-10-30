@@ -1,5 +1,6 @@
 #!/bin/bash
 
-sleep 10
+sleep 5
 #xmodmap ~/.Xmodmap &
 fcitx &
+/bin/bash ~/scripts/dwm-status.sh &
