@@ -1,7 +1,8 @@
 Scripts
 ---
 #### Dependecies  
-1. software
+**1. software**  
+
 | Name                                  | Notes                                     |
 |---------------------------------------|-------------------------------------------|
 | feh                                   | set wallpaper                             |
@@ -11,7 +12,8 @@ Scripts
 | networkmanager&network-manager-applet | WiFi                                      |
 | fcitx                                 |                                           |
 
-2. tools
+**2. tools**  
+
 | Name                | Notes              |
 |---------------------|--------------------|
 | awk                 |                    |
