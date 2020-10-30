@@ -65,7 +65,6 @@ print_bat(){
             printf "%d%s" "99" "%"
         fi
     fi
-    echo "$get_time_until_charged";
     #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
 }
 
