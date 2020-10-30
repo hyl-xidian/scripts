@@ -50,6 +50,9 @@ dwm_cpu-usage_netspeed(){
     #CPU总时间
     TOTAL_TIME=`echo ${NEXT_TOTAL_CPU_T} ${LAST_TOTAL_CPU_T} | awk '{print $1-$2}'`
     CPU_USAGE=`echo ${SYSTEM_IDLE} ${TOTAL_TIME} | awk '{printf "%.2f", 100-$1/$2*100}'`
+    if [ $(echo "$CPU_USAGE >= 10.00" |bc) = 1 ]; then
+        CPU_USAGE=`echo $CPU_USAGE | awk '{printf "%.1f", $1}'`
+    fi
     # Get update values
     get_bytes
     # Calculates speeds
