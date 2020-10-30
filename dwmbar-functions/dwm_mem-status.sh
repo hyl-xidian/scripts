@@ -1,14 +1,17 @@
 #! /bin/bash
 
 dwm_mem-status () {
-    MEMUSED=$(free -m | awk '(NR == 2) {print $3}' | cut -d " " -f 1)
-    if [ "$MEMUSED" -gt 0 ] && [ "$MEMUSED" -le 3000 ]; then
+    mem_use_info=(`awk '/MemTotal/{memtotal=$2}/MemAvailable/{memavailable=$2}END{printf "%.2f %.2f %.2f",memtotal/1024/1024," "(memtotal-memavailable)/1024/1024," "(memtotal-memavailable)/memtotal*100}' /proc/meminfo`)
+    #echo total:${mem_use_info[0]}G  used:${mem_use_info[1]}G  Usage:${mem_use_info[2]}%
+    MEMUSED=${mem_use_info[1]}
+
+    if [ $(echo "$MEMUSED > 0" | bc) = 1 ] && [ $(echo "$MEMUSED < 3.50" | bc) = 1 ]; then
         printf ""
-    elif [ "$MEMUSED" -gt 3000 ] &&[ "$MEMUSED" -le 7500 ]; then
-        printf "﫭Mo"
-    elif [ "$MEMUSED" -gt 7500 ] && [ "$MEMUSED" -le 12800 ]; then
+    elif [ $(echo "$MEMUSED >= 3.50" | bc) = 1 ] &&[ $(echo "$MEMUSED < 7.50" | bc) = 1 ]; then
+        printf "Mod"
+    elif [ $(echo "$MEMUSED >= 7.50" | bc) = 1 ] && [ $(echo "$MEMUSED < 12.00" | bc) = 1 ]; then
         printf "ﲍHeavy"
     else
-        printf "ﲍ%.1f%s" "$(echo "scale=4; $MEMUSED/1000" | bc)" "GB"
+        printf "ﲍ%.1f%s" "$MEMUSED" "GB"
     fi
 }
