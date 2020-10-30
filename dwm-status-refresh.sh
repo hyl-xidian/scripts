@@ -14,6 +14,6 @@ export IDENTIFIER="unicode"
 . "$DIR/dwmbar-functions/dwm_date.sh"
 #. "$DIR/dwmbar-functions/dwm_cpu-load.sh"
 
-xsetroot -name "$(dwm_mem-status) $(dwm_cpu-usage_netspeed) $(dwm_cpu-thermal) $(dwm_backlight) $(dwm_alsa) $(print_bat) $(dwm_date)"
+xsetroot -name "$(dwm_mem-status) $(dwm_cpu-usage_netspeed) $(dwm_cpu-thermal) $(dwm_backlight) $(dwm_alsa) $(print_bat) $(dwm_date)"
 
 exit 0
