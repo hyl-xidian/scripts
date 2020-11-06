@@ -1,7 +1,17 @@
 Scripts
 ---
-#### Dependecies  
-**1. software**  
+
+
+<!-- vim-markdown-toc GitLab -->
+
+* [Dependecies](#dependecies)
+    - [1. software](#1-software)
+    - [2. tools](#2-tools)
+
+<!-- vim-markdown-toc -->
+
+## Dependecies  
+### 1. software  
 
 | Name                                  | Notes                                     |
 |---------------------------------------|-------------------------------------------|
@@ -12,7 +22,7 @@ Scripts
 | networkmanager&network-manager-applet | WiFi                                      |
 | fcitx                                 |                                           |
 
-**2. tools**  
+### 2. tools
 
 | Name                | Notes              |
 |---------------------|--------------------|
