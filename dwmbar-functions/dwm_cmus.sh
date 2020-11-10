@@ -14,19 +14,27 @@ dwm_cmus () {
         DURATION=$(cmus-remote -Q | grep -a '^duration' | awk '{gsub("duration ", "");print}')
         STATUS=$(cmus-remote -Q | grep -a '^status' | awk '{gsub("status ", "");print}')
         SHUFFLE=$(cmus-remote -Q | grep -a '^set shuffle' | awk '{gsub("set shuffle ", "");print}')
+        REPEAT_CURRENT=$(cmus-remote -Q | grep -a '^set repeat_current' | awk '{gsub("set repeat_current ", "");print}')
 
         if [ "$IDENTIFIER" = "unicode" ]; then
             if [ "$STATUS" = "playing" ]; then
-                STATUS="▶"
+                STATUS=""
             else
-                STATUS="⏸"
+                STATUS=""
             fi
 
             if [ "$SHUFFLE" = "true" ]; then
-                SHUFFLE=" 🔀"
+                SHUFFLE="列"
             else
                 SHUFFLE=""
             fi
+
+            if [ "$REPEAT_CURRENT" = "true" ]; then
+                REPEAT_CURRENT="凌"
+            else
+                REPEAT_CURRENT=""
+            fi
+
         else
             if [ "$STATUS" = "playing" ]; then
                 STATUS="PLA"
@@ -40,11 +48,10 @@ dwm_cmus () {
                 SHUFFLE=""
             fi
         fi
-        
         printf "%s%s %s - %s " "$SEP1" "$STATUS" "$ARTIST" "$TRACK"
+        printf "%s%s " "$REPEAT_CURRENT" "$SHUFFLE"
         printf "%0d:%02d/" $((POSITION%3600/60)) $((POSITION%60))
         printf "%0d:%02d" $((DURATION%3600/60)) $((DURATION%60))
-        printf "%s%s\n" "$SHUFFLE" "$SEP2"
     fi
 }
 

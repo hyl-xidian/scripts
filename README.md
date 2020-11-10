@@ -21,6 +21,8 @@ Scripts
 | qv2ray                                | you know what                             |
 | networkmanager&network-manager-applet | WiFi                                      |
 | fcitx                                 |                                           |
+| cmus                                  | Cli Music Player                          |
+| easytag                               | Music tags                                |
 
 ### 2. tools
 
