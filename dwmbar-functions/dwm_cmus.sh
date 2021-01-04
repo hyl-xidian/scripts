@@ -18,9 +18,9 @@ dwm_cmus () {
 
         if [ "$IDENTIFIER" = "unicode" ]; then
             if [ "$STATUS" = "playing" ]; then
-                STATUS=""
-            else
                 STATUS=""
+            else
+                STATUS=""
             fi
 
             if [ "$SHUFFLE" = "true" ]; then
