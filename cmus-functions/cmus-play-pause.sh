@@ -8,5 +8,5 @@ if ps -C cmus > /dev/null; then
         cmus-remote -p
     fi
 else
-    st /bin/bash cmus
+    st cmus
 fi
