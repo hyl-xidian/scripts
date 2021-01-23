@@ -7,11 +7,9 @@ dwm_mem-status () {
 
     if [ $(echo "$MEMUSED > 0" | bc) = 1 ] && [ $(echo "$MEMUSED < 3.50" | bc) = 1 ]; then
         printf ""
-    elif [ $(echo "$MEMUSED >= 3.50" | bc) = 1 ] &&[ $(echo "$MEMUSED < 7.50" | bc) = 1 ]; then
+    elif [ $(echo "$MEMUSED >= 3.50" | bc) = 1 ] &&[ $(echo "$MEMUSED < 6.50" | bc) = 1 ]; then
         printf "Mod"
-    elif [ $(echo "$MEMUSED >= 7.50" | bc) = 1 ] && [ $(echo "$MEMUSED < 12.00" | bc) = 1 ]; then
+    else [ $(echo "$MEMUSED >= 6.50" | bc) = 1 ] && [ $(echo "$MEMUSED < 8.00" | bc) = 1 ]; then
         printf "ﲍHeavy"
-    else
-        printf "ﲍ%.1f%s" "$MEMUSED" "GB"
     fi
 }

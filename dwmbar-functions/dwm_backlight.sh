@@ -22,5 +22,3 @@ dwm_backlight () {
         echo "%.0f" "$brightness"
     fi 
 }
-
-dwm_backlight
