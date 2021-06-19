@@ -19,6 +19,11 @@ export IDENTIFIER="unicode"
 #xsetroot -name "$(dwm_mem-status) $(dwm_cmus) $(dwm_cpu-usage_netspeed) $(dwm_cpu-thermal) $(dwm_backlight) $(dwm_alsa) $(print_bat) $(dwm_date)"
 
 # simplify
-xsetroot -name "$(dwm_mem-status) $(dwm_cmus) $(dwm_cpu-usage_netspeed) $(dwm_alsa) $(dwm_date_simple)"
+#1
+#xsetroot -name "$(dwm_mem-status) $(dwm_cmus) $(dwm_cpu-usage_netspeed) $(dwm_alsa) $(dwm_date_simple)"
+#2
+#xsetroot -name "$(dwm_cmus) $(dwm_cpu-usage_netspeed) $(dwm_alsa) $(dwm_date_simple)"
+#3
+xsetroot -name "$(dwm_cmus) $(dwm_cpu-usage_netspeed) $(dwm_alsa) $(print_bat) $(dwm_date_simple)"
 
 exit 0
