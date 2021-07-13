@@ -12,7 +12,7 @@ export IDENTIFIER="unicode"
 . "$DIR/dwmbar-functions/dwm_date.sh"
 
 echo "$(dwm_mem_info) 
-$(dwm_cpu-thermal) $(dwm_backlight) $(dwm_alsa) $(print_bat) 
+$(dwm_cpu-thermal) $(dwm_backlight) $(dwm_alsa) 
 $(dwm_date)"
 
 exit 0
