@@ -67,5 +67,3 @@ print_bat(){
     fi
     #echo "$(get_battery_charging_status)$(get_battery_combined_percent)%$(get_time_until_charged)";
 }
-
-
